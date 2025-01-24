@@ -3,6 +3,7 @@ from flask_login import LoginManager, UserMixin, login_user, current_user, logou
 from models import db, User
 from flask_bcrypt import Bcrypt
 import sqlite3
+from utilis import get_people_in_space
 
 app = Flask(__name__)
 bcrypt = Bcrypt(app)
@@ -54,8 +55,9 @@ def login():
 @app.route('/home')
 @login_required #solo se user è autenticato
 def home():
+    people_in_space = get_people_in_space()
     user_logged = current_user.username
-    return render_template('home.html', username=current_user.username, user_logged=user_logged)
+    return render_template('home.html', username=current_user.username, user_logged=user_logged, people_in_space = people_in_space)
 
 @app.route('/logout')
 @login_required
