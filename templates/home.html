@@ -1,1 +1,24 @@
-<h1 align="center">Utente Connesso: {{user_logged}} </h1>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Home</title>
+     
+       
+    </head>
+<body>
+
+    <h1>Benvenuto {{ username }}!</h1>
+    
+
+    <h3>Persone attualmente nello spazio:</h3>
+    <ul>
+        {% for person in people_in_space %}
+            <li>{{ person.name }} - Veicolo: {{ person.craft }}</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{{ url_for('logout') }}">Logout</a>
+</body>
+</html>
